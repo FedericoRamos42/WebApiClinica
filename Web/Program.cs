@@ -100,6 +100,14 @@ builder.Services.AddAuthorization(options =>
 });
 #endregion
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost5174",
+        policy => policy.WithOrigins( "http://localhost:5174")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -109,8 +117,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowLocalhost5174");
 app.UseMiddleware<ExceptionMiddleware>();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 

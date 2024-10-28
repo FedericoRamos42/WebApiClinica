@@ -32,7 +32,7 @@ namespace Web.Controllers
             return Ok(doctors);
         }
         [HttpPost("AddDoctor")]
-        [Authorize(Policy = "Admin")]
+        //[Authorize(Policy = "Admin")]
         public IActionResult AddDoctor([FromBody] DoctorCreateRequest request)
         {
             var newObj = _doctorService.CreateDoctor(request);

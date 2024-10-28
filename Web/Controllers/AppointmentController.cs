@@ -53,7 +53,7 @@ namespace Web.Controllers
         }
 
         [HttpPost("GenerateAppointments/{doctorId}")]
-        [Authorize(Policy = "Doctor")]
+        //[Authorize(Policy = "Doctor")]
         public IActionResult GenerateAppointments(int doctorId, [FromBody] DateRangeRequest dateRange)
         {
             _appointmentService.GenerateAppointmentForDoctor(doctorId, dateRange);
