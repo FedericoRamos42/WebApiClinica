@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Models.Request;
+using Application.Models.Response;
 using Domain.Entities;
 using Domain.InterFaces;
 using Microsoft.Extensions.Configuration;
@@ -32,12 +33,12 @@ namespace Infrastructure.Services
             }
             return null;
         }
-            public string AuthenticateCredentials(CredentialRequest credentialRequest)
+            public AuthenticationResponse? AuthenticateCredentials(CredentialRequest credentialRequest)
             {
                 var userAuthenticated = ValidateUser(credentialRequest);
                 if (userAuthenticated == null)
                 {
-                    return "null";
+                    return null;
                 }
                 
                 var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Authentication:SecretForKey"])); //Traemos la SecretKey del Json. agregar antes: using Microsoft.IdentityModel.Tokens;
@@ -55,11 +56,20 @@ namespace Infrastructure.Services
                   _config["Authentication:Audience"],
                   claimsForToken,
                   DateTime.UtcNow,
-                  DateTime.UtcNow.AddHours(1),
+                  DateTime.UtcNow.AddHours(4800),
                   signature);
 
                 string tokenToReturn = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-                return (tokenToReturn);
+                var response = new AuthenticationResponse
+                {
+                    Id = userAuthenticated.Id,
+                    Name = userAuthenticated.Name,
+                    LastName = userAuthenticated.LastName,
+                    Email = userAuthenticated.Email,
+                    Token = tokenToReturn,
+                    Role = userAuthenticated.UserRole
+                };                
+                return (response);
 
 
             }

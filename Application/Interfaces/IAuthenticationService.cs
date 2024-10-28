@@ -1,4 +1,5 @@
 ﻿using Application.Models.Request;
+using Application.Models.Response;
 using Domain.Entities;
 using Domain.InterFaces;
 using System;
@@ -12,6 +13,6 @@ namespace Application.Interfaces
     public interface IAuthenticationService
     {
         User? ValidateUser(CredentialRequest credentialRequest);
-        string AuthenticateCredentials(CredentialRequest credentialRequest);
+        AuthenticationResponse? AuthenticateCredentials(CredentialRequest credentialRequest);
     }
 }

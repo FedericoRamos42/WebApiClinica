@@ -19,7 +19,7 @@ namespace Web.Controllers
         [HttpPost("[action]")]
         public IActionResult AuthenticateUser([FromBody] CredentialRequest request)
         {
-            string token = _authenticateService.AuthenticateCredentials(request);
+            var token = _authenticateService.AuthenticateCredentials(request);
 
             if (token is not null)
             {
