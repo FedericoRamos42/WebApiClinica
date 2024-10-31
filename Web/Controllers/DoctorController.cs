@@ -18,7 +18,7 @@ namespace Web.Controllers
             _doctorService = doctorService;
         }
 
-        [HttpGet("GetDoctorWithSpecialty/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetWithSpecialty(int id)
         {
             var result = _doctorService.GetBySpecialty(id);

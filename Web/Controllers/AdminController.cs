@@ -18,7 +18,7 @@ namespace Web.Controllers
             _adminService = adminService;
         }
 
-        [HttpGet("GetById/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetAdminById(int id)
         {
             var result = _adminService.GetById(id);
