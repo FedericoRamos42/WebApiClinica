@@ -48,7 +48,7 @@ namespace Application.Services
             return AppointmentDto.CreateList(listAppointments);
         }
 
-        public IEnumerable<AppointmentDto> GetAllByPatientId(int id)
+        public IEnumerable<ResponseAppointmentGetAll> GetAllByPatientId(int id)
         {
             var patient = _patientRepository.GetByIdIncludeAddress(id);
             if(patient == null)
@@ -56,7 +56,7 @@ namespace Application.Services
                 throw new NotFoundException($"No existe paciente con el id {id}");
             }
             var listAppointments = _appointmentRepository.GetAppointmentByPatientId(id);
-            return AppointmentDto.CreateList(listAppointments);
+            return ResponseAppointmentGetAll.CreateList(listAppointments);
         }
         public IEnumerable<ResponseAppointmentGetAll> GetAllAppointment()
         {

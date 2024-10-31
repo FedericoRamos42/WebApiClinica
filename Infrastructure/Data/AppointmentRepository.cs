@@ -33,8 +33,8 @@ namespace Infrastructure.Data
         {
             var appointments = _repository.Appointments
                                         .Where(a => a.PatientId == patientId)
-                                        .Include(c => c.Patient)
                                         .Include(c => c.Doctor)
+                                        .ThenInclude(d => d.Specialty)
                                         .ToList();
 
             return appointments;
