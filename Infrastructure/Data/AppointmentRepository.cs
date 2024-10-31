@@ -43,8 +43,9 @@ namespace Infrastructure.Data
         public IEnumerable<Appointment> GetAppointmentByDoctorId(int doctorId)
         {
             var appointments = _repository.Appointments
-                                        .Where(a => a.DoctorId == doctorId)
+                                        .Where(a => a.DoctorId == doctorId && a.Status == AppointmentStatus.Reserved)
                                         .Include(a => a.Patient)
+                                        .Include(d=>d.Doctor)
                                         .ToList();
             return appointments;
         }

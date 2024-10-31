@@ -13,7 +13,7 @@ namespace Application.Interfaces
     public interface IAppointmentService
     {
         AppointmentDto GetById(int id);
-        IEnumerable<AppointmentDto> GetAllByDoctorId(int id);
+        IEnumerable<ResponseDoctorID> GetAllByDoctorId(int id);
         IEnumerable<ResponseAppointmentGetAll> GetAllByPatientId(int id);
         IEnumerable<AppointmentDto> GetAppointmentsAvailable(int id);
         void GenerateAppointmentForDoctor(int doctorId, DateRangeRequest Date);
