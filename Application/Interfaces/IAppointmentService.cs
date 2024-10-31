@@ -1,5 +1,6 @@
 ﻿using Application.Models;
 using Application.Models.Request;
+using Application.Models.Response;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,6 @@ namespace Application.Interfaces
         AppointmentDto CancelAppointment(int IdAppointment);
         AppointmentDto AssignAppointment(AppointmentAssignForRequest appointmentAssign);
         AppointmentDto DeleteAppointment(int IdAppointment);
-        IEnumerable<AppointmentDto> GetAllAppointment();
+        IEnumerable<ResponseAppointmentGetAll> GetAllAppointment();
     }
 }

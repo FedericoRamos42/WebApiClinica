@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models;
 using Application.Models.Request;
+using Application.Models.Response;
 using Domain.Entities;
 using Domain.Enums;
 using Domain.Exceptions;
@@ -57,10 +58,10 @@ namespace Application.Services
             var listAppointments = _appointmentRepository.GetAppointmentByPatientId(id);
             return AppointmentDto.CreateList(listAppointments);
         }
-        public IEnumerable<AppointmentDto> GetAllAppointment()
+        public IEnumerable<ResponseAppointmentGetAll> GetAllAppointment()
         {
             var appointment = _appointmentRepository.GetAllAppointment();
-            return AppointmentDto.CreateList(appointment);
+            return ResponseAppointmentGetAll.CreateList(appointment);
         }
         public IEnumerable<AppointmentDto> GetAppointmentsAvailable(int id)
         {
