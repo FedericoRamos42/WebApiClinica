@@ -32,7 +32,7 @@ namespace Infrastructure.Data
         public IEnumerable<Appointment> GetAppointmentByPatientId(int patientId)
         {
             var appointments = _repository.Appointments
-                                        .Where(a => a.PatientId == patientId)
+                                        .Where(a => a.PatientId == patientId && a.Status == AppointmentStatus.Reserved)
                                         .Include(c => c.Doctor)
                                         .ThenInclude(d => d.Specialty)
                                         .ToList();
