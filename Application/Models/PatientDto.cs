@@ -18,7 +18,7 @@ namespace Application.Models
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
-        public UserRole UserRole { get; set; }
+        public UserRole Role { get; set; }
         public AddressDto? AddressDto { get; set; } = new AddressDto();
 
 
@@ -34,7 +34,7 @@ namespace Application.Models
                 DateOfBirth = patient.DateOfBirth,
                 Email = patient.Email,
                 Password = patient.Password,
-                UserRole = patient.UserRole,
+                Role = patient.UserRole,
                 AddressDto = AddressDto.CreateAddressDto(patient.Address)
             };
             return newDto;
