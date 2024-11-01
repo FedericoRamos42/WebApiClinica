@@ -10,7 +10,8 @@ namespace Application.Models.Response
 {
     public class ResponseDoctorID
     {
-        public string PatientName { get; set; } = string.Empty;
+            public int Id { get; set; } 
+            public string PatientName { get; set; } = string.Empty;
             public DateTime Date { get; set; }
             public TimeSpan Time { get; set; }
             public AppointmentStatus Status { get; set; }
@@ -19,6 +20,7 @@ namespace Application.Models.Response
             {
                 var newAppointmentDto = new ResponseDoctorID()
                 {
+                    Id = appointment.Id,
                     PatientName = $"{appointment.Patient.Name} {appointment.Patient.LastName}",
                     Date = appointment.Date,
                     Time = appointment.Time,
