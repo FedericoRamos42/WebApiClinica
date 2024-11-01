@@ -11,7 +11,7 @@ namespace Web.Controllers
     {
         private readonly IUserRepository _userRepository;
 
-        public UserController(UserRepository user)
+        public UserController(IUserRepository user)
         {
             _userRepository = user;
         }
