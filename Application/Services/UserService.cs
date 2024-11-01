@@ -46,5 +46,9 @@ namespace Application.Services
              _repository.UpdateUser(entity);
             return "Baja logica con exito";
         }
+        public IEnumerable<User>? GetByState(bool? state)
+        {
+            return _repository.GetByStatus(state);
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace Application.Interfaces
         IEnumerable<UserResponse> GetAll();
         User GetById(int id);
         string Delete(int id);
+        IEnumerable<User>? GetByState(bool? state);
     }
 }

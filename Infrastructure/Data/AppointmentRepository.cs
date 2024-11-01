@@ -96,6 +96,5 @@ namespace Infrastructure.Data
                                         .ThenInclude(d => d.Specialty);
             return appointments;
         }
-       
     }
 }

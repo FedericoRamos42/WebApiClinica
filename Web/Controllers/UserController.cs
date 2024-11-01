@@ -36,5 +36,11 @@ namespace Web.Controllers
             var response = _userRepository.Delete(id);
             return Ok(response);
         }
+        [HttpGet(("Filtered"))]
+        public IActionResult GetByStatus([FromQuery] bool? state)
+        {
+            var list = _userRepository.GetByState(state);
+                return Ok(list);
+        }
     }
 }

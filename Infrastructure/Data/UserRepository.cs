@@ -42,5 +42,17 @@ namespace Infrastructure.Data
             _context.SaveChanges();
             return user;
         }
+        public IEnumerable<User> GetByStatus (bool? state)
+        {
+            var query = _context.Set<User>().AsQueryable();
+
+            if (state.HasValue)
+            {
+                query = query.Where(u => u.IsAvailable == state.Value);
+            }
+
+            return query.ToList();
+        }
+            
 }
 }

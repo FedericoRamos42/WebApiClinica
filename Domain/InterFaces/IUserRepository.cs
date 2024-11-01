@@ -14,5 +14,6 @@ namespace Domain.InterFaces
         IEnumerable<User> GetAll();
         User? GetById(int id);
         User? UpdateUser(User user);
+        IEnumerable<User> GetByStatus(bool? state);
     }
 }
