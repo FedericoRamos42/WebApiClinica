@@ -228,5 +228,10 @@ namespace Application.Services
 
             return AppointmentDto.CreateDto(entity);
         }
+        public IEnumerable<ResponseAppointmentGetAll> FilteredAppointment(DateTime? date, string specialty)
+        {
+            var list = _appointmentRepository.GetFilteredAppointments(date, specialty);
+            return ResponseAppointmentGetAll.CreateList(list);
+        }
     }
 }

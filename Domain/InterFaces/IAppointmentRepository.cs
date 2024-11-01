@@ -14,6 +14,7 @@ namespace Domain.InterFaces
         IEnumerable<Appointment> GetAppointmentByDoctorId(int doctorId);
         IEnumerable<Appointment> GetByAvailable(int id);
         IEnumerable<Appointment> GetAllAppointment();
+        IEnumerable<Appointment> GetFilteredAppointments(DateTime? date, string specialty);
     }
 
 }

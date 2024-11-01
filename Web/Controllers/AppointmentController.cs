@@ -51,7 +51,13 @@ namespace Web.Controllers
             var appointment = _appointmentService.GetAppointmentsAvailable(id);
             return Ok(appointment);
         }
+        [HttpGet("Filtered")]
+        public IActionResult GetFilteredAppointmets([FromQuery] DateTime? date, [FromQuery] string specialty)
+        {
+            var response = _appointmentService.FilteredAppointment(date, specialty);
+            return Ok(response);
 
+        }
         [HttpPost("GenerateAppointments/{doctorId}")]
         //[Authorize(Policy = "Doctor")]
         public IActionResult GenerateAppointments(int doctorId, [FromBody] DateRangeRequest dateRange)

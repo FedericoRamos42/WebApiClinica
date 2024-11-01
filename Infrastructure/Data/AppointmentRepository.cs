@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infrastructure.Data
 {
@@ -62,6 +63,26 @@ namespace Infrastructure.Data
                                        && a.Status == AppointmentStatus.Available
                                        && a.Date >= today)
                               .ToList();
+        }
+        public IEnumerable<Appointment>GetFilteredAppointments(DateTime? date, string specialty)
+        {
+            DateTime today = DateTime.Today;
+
+            var query = _repository.Appointments.Where(a =>a.Status == AppointmentStatus.Available && a.Date > DateTime.Today )
+                                        .Include(c => c.Doctor)
+                                        .ThenInclude(d => d.Specialty)
+                                        .AsQueryable();
+            if (date.HasValue)
+            {
+                query = query.Where(a => a.Date.Date == date.Value.Date);
+            }
+
+            if (!string.IsNullOrEmpty(specialty))
+            {
+                query = query.Where(a => a.Doctor.Specialty.Name == specialty);
+            }
+
+            return query.ToList();
         }
         public IEnumerable<Appointment> GetAllAppointment() 
         {
