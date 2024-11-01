@@ -1,4 +1,5 @@
-﻿using Domain.InterFaces;
+﻿using Application.Interfaces;
+using Domain.InterFaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,9 +10,9 @@ namespace Web.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userRepository;
 
-        public UserController(IUserRepository user)
+        public UserController(IUserService user)
         {
             _userRepository = user;
         }
