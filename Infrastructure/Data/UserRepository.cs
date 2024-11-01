@@ -16,7 +16,12 @@ namespace Infrastructure.Data
        {
             _context = context; 
        }
+        public IEnumerable<User> GetAll() 
+        {
+            var list = _context.Set<User>().ToList();
 
+            return list;
+        }
         public User? Authenticate(string email, string password)
         {
             User? userToAuthenticate = _context.Set<User>().FirstOrDefault(u => u.Email == email && u.Password == password);

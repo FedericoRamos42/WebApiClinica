@@ -11,5 +11,6 @@ namespace Domain.InterFaces
     {
         User? Authenticate(string email, string password);
         User? ValidateEmail(string email);
+        IEnumerable<User> GetAll();
     }
 }

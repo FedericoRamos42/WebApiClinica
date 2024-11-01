@@ -19,7 +19,7 @@ namespace Application.Models
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public UserRole Role { get; set; }
-        public AddressDto? AddressDto { get; set; } = new AddressDto();
+        public AddressDto? Address { get; set; } = new AddressDto();
 
 
         public static PatientDto CreatePatient(Patient patient)
@@ -35,7 +35,7 @@ namespace Application.Models
                 Email = patient.Email,
                 Password = patient.Password,
                 Role = patient.UserRole,
-                AddressDto = AddressDto.CreateAddressDto(patient.Address)
+                Address = AddressDto.CreateAddressDto(patient.Address)
             };
             return newDto;
         }
