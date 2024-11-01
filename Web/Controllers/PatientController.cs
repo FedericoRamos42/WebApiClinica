@@ -48,8 +48,8 @@ namespace Web.Controllers
         [Authorize(Policy = "Patient")]
         public IActionResult UpdatePatient(int id, [FromBody] PatientUpdateForRequest request)
         {
-            _service.UpdatePatient(id, request);
-            return NoContent();
+            var response = _service.UpdatePatient(id, request);
+            return Ok(response);
         }
 
         [HttpDelete("Delete/{id}")]
