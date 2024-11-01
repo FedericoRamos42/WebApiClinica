@@ -22,6 +22,11 @@ namespace Infrastructure.Data
 
             return list;
         }
+        public User? GetById(int id)
+        {
+            var entity = _context.Set<User>().FirstOrDefault(u => u.Id == id);
+            return entity;
+        }
         public User? Authenticate(string email, string password)
         {
             User? userToAuthenticate = _context.Set<User>().FirstOrDefault(u => u.Email == email && u.Password == password);
@@ -31,5 +36,11 @@ namespace Infrastructure.Data
             User? validateUserEmail = _context.Set<User>().FirstOrDefault(u=>u.Email == email); 
             return validateUserEmail;
     }
+        public User? UpdateUser(User user)
+        {
+            _context.Update(user);
+            _context.SaveChanges();
+            return user;
+        }
 }
 }

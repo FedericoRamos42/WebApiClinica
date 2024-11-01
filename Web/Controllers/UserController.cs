@@ -23,5 +23,18 @@ namespace Web.Controllers
             var list = _userRepository.GetAll();
             return Ok(list);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetbyId(int id)
+        {
+            var ent = _userRepository.GetById(id);
+            return Ok(ent);
+        }
+        [HttpDelete("Delete/{id}")]
+        public IActionResult DeleteLogic(int id) 
+        {
+            var response = _userRepository.Delete(id);
+            return Ok(response);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Application.Models.Request;
 using Application.Models.Response;
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.InterFaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -27,11 +28,16 @@ namespace Infrastructure.Services
         public User? ValidateUser(CredentialRequest credentialRequest)
         {
             User? user = _userRepository.Authenticate(credentialRequest.Email, credentialRequest.Password);
-            if (user is not null)
+
+            if (user == null)
             {
-                return user;
+                 throw new NotFoundException("El usuario no existe");
             }
-            return null;
+            if(user.IsAvailable == false)
+            {
+                throw new NotFoundException("Este usuario tiene aplicada una baja logica.");
+            }
+            return user;    
         }
             public AuthenticationResponse? AuthenticateCredentials(CredentialRequest credentialRequest)
             {
