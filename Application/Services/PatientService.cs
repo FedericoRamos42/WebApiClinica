@@ -87,10 +87,14 @@ namespace Application.Services
             {
                 throw new NotFoundException($"No se encontró la direccion con el id {id}");
             }
-            var emailValidate = _userRepository.ValidateEmail(patient.Email);
-            if (emailValidate != null)
+
+            if (entity.Email != patient.Email)
             {
-                throw new NotFoundException($"Ya existe un usuario registrado con este email {patient.Email}");
+                var emailValidate = _userRepository.ValidateEmail(patient.Email);
+                if (emailValidate != null)
+                {
+                    throw new NotFoundException($"Ya existe un usuario registrado con este email {patient.Email}");
+                }
             }
 
             entity.Name = patient.Name;
