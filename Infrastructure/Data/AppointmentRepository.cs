@@ -64,22 +64,26 @@ namespace Infrastructure.Data
                                        && a.Date >= today)
                               .ToList();
         }
-        public IEnumerable<Appointment>GetFilteredAppointments(DateTime? date, string specialty)
+        public IEnumerable<Appointment> GetFilteredAppointments(DateTime? date, int? specialty)
         {
             DateTime today = DateTime.Today;
 
-            var query = _repository.Appointments.Where(a =>a.Status == AppointmentStatus.Available && a.Date > DateTime.Today )
-                                        .Include(c => c.Doctor)
-                                        .ThenInclude(d => d.Specialty)
-                                        .AsQueryable();
+            var query = _repository.Appointments
+                        .Where(a => a.Status == AppointmentStatus.Available && a.Date > today)
+                        .Include(a => a.Doctor)
+                        .ThenInclude(d => d.Specialty)
+                        .AsQueryable();
+
+            
             if (date.HasValue)
             {
                 query = query.Where(a => a.Date.Date == date.Value.Date);
             }
 
-            if (!string.IsNullOrEmpty(specialty))
+            
+            if (specialty.HasValue)
             {
-                query = query.Where(a => a.Doctor.Specialty.Name == specialty);
+                query = query.Where(a => a.Doctor.SpecialtyId == specialty.Value);
             }
 
             return query.ToList();

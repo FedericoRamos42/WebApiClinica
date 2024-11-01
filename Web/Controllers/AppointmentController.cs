@@ -52,9 +52,11 @@ namespace Web.Controllers
             return Ok(appointment);
         }
         [HttpGet("Filtered")]
-        public IActionResult GetFilteredAppointmets([FromQuery] DateTime? date, [FromQuery] string specialty)
+        public IActionResult GetFilteredAppointmets([FromQuery] DateTime? date, [FromQuery] int? idSpecialty)
         {
-            var response = _appointmentService.FilteredAppointment(date, specialty);
+            Console.WriteLine($"Received Specialty ID: {idSpecialty}");
+          
+            var response = _appointmentService.FilteredAppointment(date, idSpecialty);
             return Ok(response);
 
         }

@@ -22,6 +22,6 @@ namespace Application.Interfaces
         AppointmentDto AssignAppointment(AppointmentAssignForRequest appointmentAssign);
         AppointmentDto DeleteAppointment(int IdAppointment);
         IEnumerable<ResponseAppointmentGetAll> GetAllAppointment();
-        IEnumerable<ResponseAppointmentGetAll> FilteredAppointment(DateTime? date, string specialty);
+        IEnumerable<ResponseAppointmentGetAll> FilteredAppointment(DateTime? date, int? specialty);
     }
 }
