@@ -46,9 +46,10 @@ namespace Application.Services
              _repository.UpdateUser(entity);
             return "Baja logica con exito";
         }
-        public IEnumerable<User>? GetByState(bool? state)
+        public IEnumerable<UserResponse>? GetByState(bool? state)
         {
-            return _repository.GetByStatus(state);
+            var list = _repository.GetByStatus(state);
+            return UserResponse.CreatelistDto(list);
         }
     }
 }

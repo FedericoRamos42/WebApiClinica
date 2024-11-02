@@ -22,11 +22,11 @@ namespace Application.Models.Response
             string state;
             if (user.IsAvailable == false)
             {
-                 state = "Eliminado";
+                 state = "Inactivo";
             }
             else
             {
-                state = "Habilitado";
+                state = "Activo";
 
             }
             var doctorDto = new UserResponse()
