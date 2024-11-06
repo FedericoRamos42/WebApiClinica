@@ -18,8 +18,6 @@ namespace Application.Models.Request
         [Required]
         public DateTime DateOfBirth { get; set; }
         [Required]
-        public int SpecialtyId { get; set; }
-        [Required]
         [EmailAddress]
         public string Email { get; set; } = string.Empty; 
 

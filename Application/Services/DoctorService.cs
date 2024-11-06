@@ -70,16 +70,16 @@ namespace Application.Services
         public DoctorDto UpdateDoctor(int id, DoctorUpdateRequest doctor)
         {
             var entity = _doctorRepository.GetById(id);
-            var specialty = _specialtyRepository.GetById(doctor.SpecialtyId);
+            //var specialty = _specialtyRepository.GetById(doctor.SpecialtyId);
 
             if (entity == null) 
             {
                 throw new NotFoundException($"No se encontro el medico con el id{id}");
             }
-            if (specialty == null)
-            {
-                throw new NotFoundException($"No se encontro especialidad con el id {doctor.SpecialtyId}.");
-            }
+            //if (specialty == null)
+            //{
+            //    throw new NotFoundException($"No se encontro especialidad con el id {doctor.SpecialtyId}.");
+            //}
             var emailValidate = _userRepository.ValidateEmail(doctor.Email);
             if (emailValidate != null)
             {
@@ -90,7 +90,7 @@ namespace Application.Services
             entity.LastName = doctor.LastName;
             entity.PhoneNumber = doctor.PhoneNumber;
             entity.DateOfBirth = doctor.DateOfBirth;
-            entity.SpecialtyId = doctor.SpecialtyId;
+            //entity.SpecialtyId = doctor.SpecialtyId;
 
             var newEntity = _doctorRepository.Update(entity);
             return DoctorDto.CreateDoctorDto(newEntity);
