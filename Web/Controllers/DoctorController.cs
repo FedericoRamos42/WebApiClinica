@@ -21,7 +21,7 @@ namespace Web.Controllers
         [HttpGet("{id}")]
         public IActionResult GetWithSpecialty(int id)
         {
-            var result = _doctorService.GetBySpecialty(id);
+            var result = _doctorService.GetById(id);
             return Ok(result);
         }
 
