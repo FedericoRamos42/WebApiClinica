@@ -104,8 +104,8 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost5173",
-        policy => policy.WithOrigins( "http://localhost:5173")
+    options.AddPolicy("AllowLocalhost5174",
+        policy => policy.WithOrigins( "http://localhost:5174")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
@@ -119,7 +119,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowLocalhost5173");
+app.UseCors("AllowLocalhost5174");
 app.UseMiddleware<ExceptionMiddleware>();
 //app.UseHttpsRedirection();
 
