@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,9 @@ namespace Application.Models
         [Required]
         public int SpecialtyId { get; set; }
 
+        public UserRole Role { get; set; }
+
+
         public static DoctorDto CreateDoctorDto(Doctor doctor)
         {
             var doctorDto = new DoctorDto()
@@ -35,6 +39,7 @@ namespace Application.Models
                 SpecialtyId = doctor.SpecialtyId,
                 Email = doctor.Email,
                 Password = doctor.Password,
+                Role = doctor.UserRole
             };
             return doctorDto;
         }

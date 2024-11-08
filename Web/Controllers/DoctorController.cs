@@ -21,7 +21,7 @@ namespace Web.Controllers
         [HttpGet("{id}")]
         public IActionResult GetWithSpecialty(int id)
         {
-            var result = _doctorService.GetById(id);
+            var result = _doctorService.GetById(id);    
             return Ok(result);
         }
 
@@ -43,8 +43,8 @@ namespace Web.Controllers
         [Authorize(Policy = "Doctor")]
         public IActionResult UpdateDoctor(int id, [FromBody] DoctorUpdateRequest request)
         {
-            _doctorService.UpdateDoctor(id, request);
-            return NoContent();
+            var doctor = _doctorService.UpdateDoctor(id, request);
+            return Ok(doctor);
         }
 
         [HttpDelete("Delete/{id}")]

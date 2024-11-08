@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,6 +23,9 @@ namespace Application.Models
         public string Password { get; set; } = string.Empty;
         public bool IsAvailable { get; set; }
 
+        public UserRole Role { get; set; }
+
+
         public static AdminDto CreateAdminDto(Admin admin)
         {
             var adminDto = new AdminDto()
@@ -34,6 +38,7 @@ namespace Application.Models
                 Email = admin.Email,
                 Password = admin.Password,
                 IsAvailable = admin.IsAvailable,
+                Role = admin.UserRole
             };
             return adminDto;
         }

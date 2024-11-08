@@ -44,8 +44,8 @@ namespace Web.Controllers
         [Authorize(Policy = "Admin")]
         public IActionResult UpdateAdmin(int id, [FromBody] UpdateAdminForRequest request)
         {
-            _adminService.UpdateDto(id, request);
-            return NoContent();
+            var admin = _adminService.UpdateDto(id, request);
+            return Ok(admin);
         }
 
         [HttpPut("ChangeStatusAdmin/{id}")]

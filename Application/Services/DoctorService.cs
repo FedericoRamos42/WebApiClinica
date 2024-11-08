@@ -80,18 +80,21 @@ namespace Application.Services
             //{
             //    throw new NotFoundException($"No se encontro especialidad con el id {doctor.SpecialtyId}.");
             //}
-            var emailValidate = _userRepository.ValidateEmail(doctor.Email);
-            if (emailValidate != null)
+          
+            if (entity.Email != doctor.Email)
             {
-                throw new NotFoundException($"Ya existe un usuario registrado con este email {doctor.Email}");
+                var emailValidate = _userRepository.ValidateEmail(doctor.Email);
+                if (emailValidate != null)
+                {
+                    throw new NotFoundException($"Ya existe un usuario registrado con este email {doctor.Email}");
+                }
             }
 
             entity.Name = doctor.Name;
             entity.LastName = doctor.LastName;
             entity.PhoneNumber = doctor.PhoneNumber;
             entity.DateOfBirth = doctor.DateOfBirth;
-            //entity.SpecialtyId = doctor.SpecialtyId;
-
+            entity.Email = doctor.Email;
             var newEntity = _doctorRepository.Update(entity);
             return DoctorDto.CreateDoctorDto(newEntity);
             
