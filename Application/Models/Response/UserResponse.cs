@@ -16,17 +16,17 @@ namespace Application.Models.Response
         public string PhoneNumber {  get; set; } = string.Empty;    
         public string Email { get; set; } = string.Empty;
         public string Role {  get; set; } = string.Empty;
-        public string State { get; set; }
+        public string Status { get; set; }
          public static UserResponse CreateDoctorDto(User user)
         {
-            string state;
+            string status;
             if (user.IsAvailable == false)
             {
-                 state = "Inactivo";
+                 status = "Inactivo";
             }
             else
             {
-                state = "Activo";
+                status = "Activo";
 
             }
             var doctorDto = new UserResponse()
@@ -37,7 +37,7 @@ namespace Application.Models.Response
                 PhoneNumber = user.PhoneNumber,
                 Role = user.UserRole.ToString(),
                 Email = user.Email,
-                State = state
+                Status = status
             };
             return doctorDto;
         }
