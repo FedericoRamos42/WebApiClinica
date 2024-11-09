@@ -13,7 +13,7 @@ namespace Application.Models.Response
         public string DoctorName{ get; set; } = string.Empty;
         public string DoctorSpecialty { get; set; } = string.Empty;
         public int? PatientId { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; } = string.Empty;
         public TimeSpan Time { get; set; }
         public Domain.Enums.AppointmentStatus Status { get; set; }
 
@@ -25,7 +25,7 @@ namespace Application.Models.Response
                 DoctorName = appointment.Doctor.Name,
                 DoctorSpecialty = appointment.Doctor.Specialty.Name,
                 PatientId = appointment.PatientId,
-                Date = appointment.Date,
+                Date = appointment.Date.ToUniversalTime().ToString("dd/MM/yyyy"),
                 Time = appointment.Time,
                 Status = appointment.Status
             };

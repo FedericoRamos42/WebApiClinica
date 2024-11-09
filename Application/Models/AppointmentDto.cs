@@ -2,6 +2,7 @@
 using Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Application.Models
         public int IdAppointment { get; set; }
         public int DoctorId { get; set; }
         public int? PatientId { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public TimeSpan Time { get; set; }
         public AppointmentStatus Status { get; set; }
 
@@ -24,7 +25,7 @@ namespace Application.Models
                 IdAppointment = appointment.Id,
                 DoctorId = appointment.DoctorId,
                 PatientId = appointment.PatientId,
-                Date = appointment.Date,
+                Date = appointment.Date.ToUniversalTime().ToString("dd/MM/yyyy"),
                 Time = appointment.Time,
                 Status = appointment.Status
             };

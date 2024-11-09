@@ -12,7 +12,7 @@ namespace Application.Models.Response
     {
             public int Id { get; set; } 
             public string PatientName { get; set; } = string.Empty;
-            public DateTime Date { get; set; }
+            public string Date { get; set; }
             public TimeSpan Time { get; set; }
             public AppointmentStatus Status { get; set; }
 
@@ -22,7 +22,7 @@ namespace Application.Models.Response
                 {
                     Id = appointment.Id,
                     PatientName = $"{appointment.Patient.Name} {appointment.Patient.LastName}",
-                    Date = appointment.Date,
+                    Date = appointment.Date.ToUniversalTime().ToString("dd/MM/yyyy"),
                     Time = appointment.Time,
                     Status = appointment.Status
                 };

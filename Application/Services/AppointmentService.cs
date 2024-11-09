@@ -175,6 +175,7 @@ namespace Application.Services
             var entity = _appointmentRepository.GetById(IdAppointment) ?? throw new NotFoundException("Cita no encontrada.");
 
             entity.Status = AppointmentStatus.Available;
+            entity.PatientId = null;
 
             _appointmentRepository.Update(entity);
 
