@@ -68,11 +68,14 @@ namespace Application.Services
             {
                 throw new NotFoundException($"No se encontró el Admin con el id {id}");
             }
-            
-            var emailValidate = _userRepository.ValidateEmail(admin.Email);
-            if (emailValidate != null)
+
+            if (entity.Email != admin.Email)
             {
-                throw new NotFoundException($"Ya existe un usuario registrado con este email {admin.Email}");
+                var emailValidate = _userRepository.ValidateEmail(admin.Email);
+                if (emailValidate != null)
+                {
+                    throw new NotFoundException($"Ya existe un usuario registrado con este email {admin.Email}");
+                }
             }
 
             entity.Name = admin.Name;

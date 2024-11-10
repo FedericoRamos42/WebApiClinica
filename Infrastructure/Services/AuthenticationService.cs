@@ -31,11 +31,11 @@ namespace Infrastructure.Services
 
             if (user == null)
             {
-                 throw new NotFoundException("El usuario no existe");
+                return null;
             }
             if(user.IsAvailable == false)
             {
-                throw new NotFoundException("Este usuario tiene aplicada una baja logica.");
+                return null;
             }
             return user;    
         }
